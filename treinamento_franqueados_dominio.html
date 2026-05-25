@@ -396,22 +396,36 @@
   }
   .image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
   }
-  .image-grid img {
+  .image-grid-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .image-grid-item { grid-template-columns: 1fr; }
+  }
+  .image-grid-item img {
     width: 100%;
     border-radius: 10px;
     border: 1px solid var(--border);
     display: block;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: zoom-in;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   }
-  .image-grid img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  .image-description {
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 10px;
+    padding: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
   }
+  .image-description strong { color: var(--accent2); }
 
   /* ── CHIP ── */
   .chip {
@@ -460,39 +474,6 @@
     font-size: 0.8rem;
   }
   footer strong { color: var(--accent2); }
-
-  /* ── LIGHTBOX ── */
-  .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    z-index: 999;
-    align-items: center;
-    justify-content: center;
-  }
-  .lightbox.active { display: flex; }
-  .lightbox img {
-    max-width: 90vw;
-    max-height: 90vh;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-  }
-  .lightbox-close {
-    position: absolute;
-    top: 20px; right: 24px;
-    font-size: 1.4rem;
-    color: #fff;
-    cursor: pointer;
-    background: rgba(255,255,255,0.1);
-    border: none;
-    border-radius: 50%;
-    width: 42px; height: 42px;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s;
-    font-family: sans-serif;
-  }
-  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
 
   /* ── NOTA SOBRE VÍDEOS ── */
   .note-box {
@@ -761,15 +742,10 @@
       </div>
     </div>
     <div class="image-module">
-      <div class="steps-card-title">Como funciona a Clonagem</div>
-      <p style="color:var(--muted);font-size:0.87rem;margin-bottom:1rem;">No módulo Fiscal e Contábil do Domínio, é possível <strong style="color:var(--text);">clonar os parâmetros</strong> de uma empresa modelo da base ou de outra empresa da própria carteira de clientes (Franqueado). Isso torna a implantação mais assertiva e reduz significativamente o retrabalho.</p>
-      <div style="margin-bottom:1.2rem;">
-        <span class="chip">📋 Controle → Empresas</span>
-        <span class="chip">📥 Botão Importação</span>
-        <span class="chip">🔁 Importar dados</span>
-        <span class="chip">✅ Folha / Escrita Fiscal / Contabilidade</span>
-      </div>
-      <div class="steps-card" style="margin-bottom:1.5rem;">
+      <p style="color:var(--muted);font-size:0.87rem;margin-bottom:1.5rem;">No módulo Fiscal e Contábil do Domínio, é possível <strong style="color:var(--text);">clonar os parâmetros</strong> de uma empresa modelo da base ou de outra empresa da própria carteira de clientes (Franqueado). Isso torna a implantação mais assertiva e reduz significativamente o retrabalho.</p>
+      
+      <!-- Passo a Passo com Cards -->
+      <div class="steps-card" style="margin-bottom:2rem;">
         <div class="steps-card-title">Passo a Passo</div>
         <div class="step-item">
           <div class="step-dot">1</div>
@@ -788,12 +764,24 @@
           <div class="step-text"><strong>Clique em "Importar dados"</strong> para cada módulo desejado: <strong>Folha, Escrita Fiscal, Contabilidade, Patrimônio, Latur</strong> etc. Confirme e grave ao finalizar.</div>
         </div>
       </div>
-      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Clique nas imagens para ampliar:</p>
+
+      <!-- Imagens com Descrições -->
       <div class="image-grid">
-        <img src="1779408674117_image.png" alt="Clonagem Fiscal Contábil – Tela 1" onclick="openLightbox(this.src)">
-        <img src="1779408703496_image.png" alt="Clonagem Fiscal Contábil – Tela 2" onclick="openLightbox(this.src)">
-        <img src="1779408705954_image.png" alt="Clonagem Fiscal Contábil – Tela 3" onclick="openLightbox(this.src)">
-        <img src="1779408714544_image.png" alt="Clonagem Fiscal Contábil – Tela 4" onclick="openLightbox(this.src)">
+        <div class="image-grid-item">
+          <img src="https://github.com/anjos-lang/CF-Contabilidade/blob/main/fiscal_contabil_1.png?raw=true" alt="Clonagem Fiscal Contábil – Menu de Empresas e Importação">
+          <div class="image-description">
+            <strong>Imagem 1: Menu de Acesso</strong><br><br>
+            Navegue até <strong>Controle → Empresas</strong> e abra o cadastro da empresa de destino. Localize o botão <strong>"Importação"</strong> na barra de ferramentas inferior. Este é o ponto de partida para clonar as configurações de outra empresa modelo.
+          </div>
+        </div>
+
+        <div class="image-grid-item">
+          <img src="https://github.com/anjos-lang/CF-Contabilidade/blob/main/fiscal_contabil_2.png?raw=true" alt="Clonagem Fiscal Contábil – Seleção de Origem">
+          <div class="image-description">
+            <strong>Imagem 2: Seleção de Origem e Importação de Dados</strong><br><br>
+            <strong>Dica importante:</strong> Marque todos os quadradinhos de <strong>"Cadastros a serem importados"</strong> para clonar <strong>todos</strong> os layouts da empresa modelo. Qualquer necessidade de configuração futura pode ser editada após a importação sem maiores problemas. Escolha a empresa de origem e clique em <strong>"Importar dados"</strong> para cada módulo.
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -806,25 +794,7 @@
   Mantenha este conteúdo atualizado conforme as versões do sistema.
 </footer>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt="Imagem ampliada">
-</div>
-
 <script>
-  // Lightbox
-  function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('active');
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-  }
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeLightbox();
-  });
-
   // Nav active state on scroll
   const sections = document.querySelectorAll('.module');
   const navLinks = document.querySelectorAll('.nav-item');
