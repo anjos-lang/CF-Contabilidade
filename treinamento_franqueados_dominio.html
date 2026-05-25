@@ -402,12 +402,8 @@
   }
   .image-grid-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    align-items: start;
-  }
-  @media (max-width: 900px) {
-    .image-grid-item { grid-template-columns: 1fr; }
   }
   .image-grid-item img {
     width: 100%;
@@ -515,7 +511,7 @@
 <section class="hero">
   <div class="hero-tag">🎓 Capacitação Inicial</div>
   <h1>Parâmetros Iniciais<br><em>Sistema Domínio</em></h1>
-  <p>Guia para parametrização padrão e envio ao eSocial. Cada empresa possui suas particularidades — sinta-se à vontade para ajustar as configurações conforme a realidade do seu cliente, sempre com base nos módulos apresentados.</p>
+  <p>Guia para parametrização padrão e envio ao eSocial. Cada empresa possui suas particularidades — sinta-se à vontade para ajustar as configurações conforme a realidade do seu cliente.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">4</div><div class="stat-label">Vídeos</div></div>
     <div class="stat"><div class="stat-num">5</div><div class="stat-label">Módulos</div></div>
@@ -562,11 +558,11 @@
         <div class="steps-card-title">Passo a Passo</div>
         <div class="step-item">
           <div class="step-dot">1</div>
-          <div class="step-text"><strong>Conferência dos dados:</strong> Verifique se todas as informações da empresa foram importadas corretamente para o sistema — razão social, CNPJ, endereço, natureza jurídica etc.</div>
+          <div class="step-text"><strong>Conferência dos dados:</strong> Verifique se todas as informações da empresa foram importadas corretamente para o sistema — razão social, CNPJ, endereço, regime etc.</div>
         </div>
         <div class="step-item">
           <div class="step-dot">2</div>
-          <div class="step-text"><strong>Validação do cadastro:</strong> Confira aba a aba — Empresa, Atividades, Responsável Legal, Quadro Societário e Observações — corrigindo qualquer inconsistência encontrada.</div>
+          <div class="step-text"><strong>Validação do cadastro:</strong> Confira aba a aba — Empresa, Atividades, Responsável Legal, Quadro Societário e Observações — corrigindo qualquer inconsistência.</div>
         </div>
         <div class="step-item">
           <div class="step-dot">3</div>
@@ -616,7 +612,7 @@
           </div>
           <div class="step-item">
             <div class="step-dot">2</div>
-            <div class="step-text"><strong>Histórico de envio:</strong> Informe se a empresa já foi enviada anteriormente e insira a <strong>data de início</strong> dos envios pelo sistema atual (normalmente o período corrente).</div>
+            <div class="step-text"><strong>Histórico de envio:</strong> Informe se a empresa já foi enviada anteriormente e insira a <strong>data de início</strong> dos envios pelo sistema atual.</div>
           </div>
           <div class="step-item">
             <div class="step-dot">3</div>
@@ -624,7 +620,7 @@
           </div>
           <div class="step-item">
             <div class="step-dot">4</div>
-            <div class="step-text"><strong>Aba Geral:</strong> Preencha a <strong>classificação tributária</strong> e informe: se é cooperativa, se possui consultora, se optou pelo registro eletrônico de empregados e demais campos disponíveis.</div>
+            <div class="step-text"><strong>Aba Geral:</strong> Preencha a <strong>classificação tributária</strong> e informe: se é cooperativa, se possui consultora, se optou pelo registro eletrônico.</div>
           </div>
         </div>
       </div>
@@ -665,7 +661,7 @@
         <div class="steps-card-title">Passo a Passo</div>
         <div class="step-item">
           <div class="step-dot">1</div>
-          <div class="step-text"><strong>Aba Cálculo:</strong> Use <strong>rubrica da empresa</strong> com o mesmo código da empresa. Isso garante que alterações em rubricas afetem apenas a base desta empresa (a base é compartilhada). Marque <strong>"Efetuar cálculo de tributos conforme a DCTFWEB"</strong> — obrigatório desde 2021.</div>
+          <div class="step-text"><strong>Aba Cálculo:</strong> Use <strong>rubrica da empresa</strong> com o mesmo código da empresa. Isso garante que alterações em rubricas afetem apenas a empresa específica.</div>
         </div>
         <div class="step-item">
           <div class="step-dot">2</div>
@@ -677,7 +673,7 @@
         </div>
         <div class="step-item">
           <div class="step-dot">4</div>
-          <div class="step-text"><strong>Aba INSS:</strong> Preencha todos os campos de acordo com as informações específicas da empresa — alíquotas, código FPAS, terceiros e demais configurações previdenciárias.</div>
+          <div class="step-text"><strong>Aba INSS:</strong> Preencha todos os campos de acordo com as informações específicas da empresa — alíquotas, código FPAS, terceiros e demais configurações.</div>
         </div>
       </div>
     </div>
@@ -711,19 +707,19 @@
           <div class="full-card-steps-title">Etapas desta seção</div>
           <div class="step-item">
             <div class="step-dot">1</div>
-            <div class="step-text"><strong>1ª Fase — Eventos de Tabela:</strong> Envie os eventos iniciais de empregador, rubricas e estabelecimentos. São os registros que estruturam a empresa no eSocial.</div>
+            <div class="step-text"><strong>1ª Fase — Eventos de Tabela:</strong> Envie os eventos iniciais de empregador, rubricas e estabelecimentos. São os registros que estruturam a empresa.</div>
           </div>
           <div class="step-item">
             <div class="step-dot">2</div>
-            <div class="step-text"><strong>2ª Fase — Eventos de Vínculo:</strong> Envie os vínculos empregatícios — admissões, cargos e demais eventos de trabalhador — conforme a fase de implantação.</div>
+            <div class="step-text"><strong>2ª Fase — Eventos de Vínculo:</strong> Envie os vínculos empregatícios — admissões, cargos e demais eventos de trabalhador — conforme a fase de enquadramento.</div>
           </div>
           <div class="step-item">
             <div class="step-dot">3</div>
-            <div class="step-text"><strong>Painel de Pendências:</strong> Após o envio, acompanhe o retorno dos lotes no painel. Verifique erros e alertas para cada evento e corrija eventuais inconsistências antes do reenvio.</div>
+            <div class="step-text"><strong>Painel de Pendências:</strong> Após o envio, acompanhe o retorno dos lotes no painel. Verifique erros e alertas para cada evento e corrija eventuais inconsistências.</div>
           </div>
           <div class="step-item">
             <div class="step-dot">4</div>
-            <div class="step-text"><strong>Validação final:</strong> Confirme o <strong>recibo de transmissão</strong> de cada evento. Somente após aprovação pelo ambiente oficial o envio está concluído com sucesso.</div>
+            <div class="step-text"><strong>Validação final:</strong> Confirme o <strong>recibo de transmissão</strong> de cada evento. Somente após aprovação pelo ambiente oficial o envio estará completo.</div>
           </div>
         </div>
       </div>
@@ -742,7 +738,7 @@
       </div>
     </div>
     <div class="image-module">
-      <p style="color:var(--muted);font-size:0.87rem;margin-bottom:1.5rem;">No módulo Fiscal e Contábil do Domínio, é possível <strong style="color:var(--text);">clonar os parâmetros</strong> de uma empresa modelo da base ou de outra empresa da própria carteira de clientes (Franqueado). Isso torna a implantação mais assertiva e reduz significativamente o retrabalho.</p>
+      <p style="color:var(--muted);font-size:0.87rem;margin-bottom:1.5rem;">No módulo Fiscal e Contábil do Domínio, é possível <strong style="color:var(--text);">clonar os parâmetros de uma empresa modelo</strong> para novas empresas, economizando tempo e garantindo consistência nas configurações. Veja o passo a passo com as imagens abaixo:</p>
       
       <!-- Passo a Passo com Cards -->
       <div class="steps-card" style="margin-bottom:2rem;">
@@ -761,25 +757,25 @@
         </div>
         <div class="step-item">
           <div class="step-dot">4</div>
-          <div class="step-text"><strong>Clique em "Importar dados"</strong> para cada módulo desejado: <strong>Folha, Escrita Fiscal, Contabilidade, Patrimônio, Latur</strong> etc. Confirme e grave ao finalizar.</div>
+          <div class="step-text"><strong>Clique em "Importar dados"</strong> para cada módulo desejado: <strong>Folha, Escrita Fiscal, Contabilidade, Patrimônio, Latur</strong> etc. Confirme e aguarde o processamento.</div>
         </div>
       </div>
 
-      <!-- Imagens com Descrições -->
+      <!-- Imagens com Descrições em tela cheia -->
       <div class="image-grid">
         <div class="image-grid-item">
-          <img src="https://github.com/anjos-lang/CF-Contabilidade/blob/main/fiscal_contabil_1.png?raw=true" alt="Clonagem Fiscal Contábil – Menu de Empresas e Importação">
+          <img src="https://github.com/anjos-lang/CF-Contabilidade/raw/main/primeira%20imagem" alt="Clonagem Fiscal Contábil – Menu de Empresas e Importação" style="max-width:100%; height:auto;">
           <div class="image-description">
-            <strong>Imagem 1: Menu de Acesso</strong><br><br>
-            Navegue até <strong>Controle → Empresas</strong> e abra o cadastro da empresa de destino. Localize o botão <strong>"Importação"</strong> na barra de ferramentas inferior. Este é o ponto de partida para clonar as configurações de outra empresa modelo.
+            <strong>📸 Primeira Imagem: Menu de Acesso</strong><br><br>
+            Navegue até <strong>Controle → Empresas</strong> e abra o cadastro da empresa de destino. Localize o botão <strong>"Importação"</strong> na barra de ferramentas inferior. Este botão abre o assistente de importação que permitirá clonar todos os parâmetros da empresa modelo.
           </div>
         </div>
 
         <div class="image-grid-item">
-          <img src="https://github.com/anjos-lang/CF-Contabilidade/blob/main/fiscal_contabil_2.png?raw=true" alt="Clonagem Fiscal Contábil – Seleção de Origem">
+          <img src="https://github.com/anjos-lang/CF-Contabilidade/raw/main/segunda%20imagem" alt="Clonagem Fiscal Contábil – Seleção de Origem" style="max-width:100%; height:auto;">
           <div class="image-description">
-            <strong>Imagem 2: Seleção de Origem e Importação de Dados</strong><br><br>
-            <strong>Dica importante:</strong> Marque todos os quadradinhos de <strong>"Cadastros a serem importados"</strong> para clonar <strong>todos</strong> os layouts da empresa modelo. Qualquer necessidade de configuração futura pode ser editada após a importação sem maiores problemas. Escolha a empresa de origem e clique em <strong>"Importar dados"</strong> para cada módulo.
+            <strong>📸 Segunda Imagem: Seleção de Origem e Importação de Dados</strong><br><br>
+            <strong>Dica importante:</strong> Marque todos os quadradinhos de <strong>"Cadastros a serem importados"</strong> para clonar <strong>todos</strong> os layouts da empresa modelo. Qualquer configuração não importada terá de ser feita manualmente. Após selecionar, clique em "Importar dados" para executar a clonagem.
           </div>
         </div>
       </div>
