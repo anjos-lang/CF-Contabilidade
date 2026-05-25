@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capacitação Inicial – Domínio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131929;
+    --card: #1a2338;
+    --border: #2a3a5c;
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --gold: #f59e0b;
+    --text: #e8edf8;
+    --muted: #7a8db3;
+    --gradient: linear-gradient(135deg, #1e3a8a 0%, #0e7490 100%);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0f1f3d 0%, #0c2040 50%, #071828 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--gradient);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+  .logo-text span { color: var(--accent2); }
+  .badge {
+    background: linear-gradient(135deg, var(--gold), #d97706);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── PROGRESS NAV ── */
+  .progress-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    overflow-x: auto;
+  }
+  .progress-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 1.5rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+  .nav-item:hover { color: var(--text); border-bottom-color: var(--border); }
+  .nav-item.active { color: var(--accent2); border-bottom-color: var(--accent2); }
+  .nav-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+  .nav-item.active .nav-num {
+    background: var(--accent2);
+    color: #000;
+    border-color: var(--accent2);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0d1f3c 0%, #071828 60%, #0a1525 100%);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: var(--accent2);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    font-size: 1rem;
+  }
+  .hero-stats { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent2);
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  /* ── MODULE ── */
+  .module {
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .module:nth-child(1) { animation-delay: 0.1s; }
+  .module:nth-child(2) { animation-delay: 0.2s; }
+  .module:nth-child(3) { animation-delay: 0.3s; }
+  .module:nth-child(4) { animation-delay: 0.4s; }
+  .module:nth-child(5) { animation-delay: 0.5s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .module-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .module-num {
+    min-width: 52px; height: 52px;
+    background: var(--gradient);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+  }
+  .module-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .module-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .module-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 760px) { .module-grid { grid-template-columns: 1fr; } }
+
+  /* ── VIDEO CARD ── */
+  .video-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .video-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    border-color: rgba(59,130,246,0.4);
+  }
+  .video-wrap {
+    position: relative;
+    background: #000;
+    aspect-ratio: 16/9;
+  }
+  .video-wrap video { width: 100%; height: 100%; display: block; }
+  .video-tag {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    color: var(--accent2);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .video-info { padding: 1rem 1.2rem 1.2rem; }
+  .video-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .video-info p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── STEPS CARD ── */
+  .steps-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .steps-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .steps-card-title::before {
+    content: '';
+    display: block;
+    width: 3px; height: 16px;
+    background: var(--accent2);
+    border-radius: 2px;
+  }
+  .step-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(42,58,92,0.5);
+  }
+  .step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .step-dot {
+    min-width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(59,130,246,0.1);
+    border: 1.5px solid rgba(59,130,246,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 1px;
+  }
+  .step-text { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+  .step-text strong { color: var(--text); }
+
+  /* ── FULL CARD ── */
+  .full-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .full-card-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+  }
+  @media (max-width: 760px) { .full-card-inner { grid-template-columns: 1fr; } }
+  .full-card-video { background: #000; aspect-ratio: 16/9; }
+  .full-card-video video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .full-card-content {
+    padding: 1.8rem;
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+    max-height: 340px;
+  }
+  @media (max-width: 760px) {
+    .full-card-content { border-left: none; border-top: 1px solid var(--border); max-height: none; }
+  }
+  .full-card-steps-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .full-card-steps-title::before {
+    content: '';
+    display: block;
+    width: 3px; height: 16px;
+    background: var(--accent2);
+    border-radius: 2px;
+  }
+
+  /* ── IMAGE SECTION ── */
+  .image-module {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .image-grid img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: zoom-in;
+  }
+  .image-grid img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+
+  /* ── CHIP ── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(6,182,212,0.08);
+    border: 1px solid rgba(6,182,212,0.2);
+    color: var(--accent2);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* ── ALERT ── */
+  .alert {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.84rem;
+    color: #fcd34d;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 1rem; margin-top: 1px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  footer strong { color: var(--accent2); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    font-size: 1.4rem;
+    color: #fff;
+    cursor: pointer;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 50%;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    font-family: sans-serif;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── NOTA SOBRE VÍDEOS ── */
+  .note-box {
+    background: rgba(59,130,246,0.07);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 2rem;
+    font-size: 0.84rem;
+    color: var(--muted);
+  }
+  .note-box strong { color: var(--accent2); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">🏢</div>
+      <div class="logo-text">Domínio</div>
+    </div>
+  </div>
+</header>
+
+<!-- PROGRESS NAV -->
+<nav class="progress-nav">
+  <div class="progress-nav-inner">
+    <a class="nav-item active" href="#mod1"><span class="nav-num">1</span> Conferência &amp; Certificado</a>
+    <a class="nav-item" href="#mod2"><span class="nav-num">2</span> Parâmetros DP — Parte I</a>
+    <a class="nav-item" href="#mod3"><span class="nav-num">3</span> Parâmetros DP — Parte II</a>
+    <a class="nav-item" href="#mod4"><span class="nav-num">4</span> Envio eSocial</a>
+    <a class="nav-item" href="#mod5"><span class="nav-num">5</span> Fiscal &amp; Contábil</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">🎓 Capacitação Inicial</div>
+  <h1>Parâmetros Iniciais<br><em>Sistema Domínio</em></h1>
+  <p>Guia para parametrização padrão e envio ao eSocial. Cada empresa possui suas particularidades — sinta-se à vontade para ajustar as configurações conforme a realidade do seu cliente, sempre com base nos módulos apresentados.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Vídeos</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Módulos</div></div>
+    <div class="stat"><div class="stat-num">+20</div><div class="stat-label">Etapas guiadas</div></div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main>
+
+  <div class="note-box">
+    <strong>📁 Sobre os vídeos:</strong> Os arquivos de vídeo devem estar na mesma pasta que este HTML com os nomes originais, ou ajuste os caminhos na tag <code>&lt;source src="..."&gt;</code> conforme seu servidor.
+  </div>
+
+  <!-- MÓDULO 1 -->
+  <div class="module" id="mod1">
+    <div class="module-header">
+      <div class="module-num">01</div>
+      <div class="module-title-wrap">
+        <div class="module-label">Configuração Inicial</div>
+        <div class="module-title">Conferência de Dados &amp; Certificado Digital</div>
+      </div>
+    </div>
+    <div class="module-grid">
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe width="100%" height="100%"
+            src="https://www.youtube.com/embed/T_zjdou0q0E"
+            title="Conferencia e anexando certificado digital"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            style="display:block;border:none;width:100%;height:100%;">
+          </iframe>
+          <div class="video-tag">▶ Módulo 01</div>
+        </div>
+        <div class="video-info">
+          <h3>Conferência &amp; Anexo do Certificado Digital</h3>
+          <p>Verifique os dados cadastrais e vincule o certificado digital da empresa no sistema.</p>
+        </div>
+      </div>
+      <div class="steps-card">
+        <div class="steps-card-title">Passo a Passo</div>
+        <div class="step-item">
+          <div class="step-dot">1</div>
+          <div class="step-text"><strong>Conferência dos dados:</strong> Verifique se todas as informações da empresa foram importadas corretamente para o sistema — razão social, CNPJ, endereço, natureza jurídica etc.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">2</div>
+          <div class="step-text"><strong>Validação do cadastro:</strong> Confira aba a aba — Empresa, Atividades, Responsável Legal, Quadro Societário e Observações — corrigindo qualquer inconsistência encontrada.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">3</div>
+          <div class="step-text"><strong>Anexo do Certificado Digital:</strong> Acesse a aba <em>Certificado Digital</em>, localize o arquivo (.pfx ou .p12) e vincule conforme demonstrado no vídeo.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">4</div>
+          <div class="step-text"><strong>Salvar e verificar:</strong> Grave as alterações e confirme que o certificado está ativo e dentro da validade para comunicação com o eSocial.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MÓDULO 2 -->
+  <div class="module" id="mod2">
+    <div class="module-header">
+      <div class="module-num">02</div>
+      <div class="module-title-wrap">
+        <div class="module-label">Departamento Pessoal</div>
+        <div class="module-title">Parâmetros DP — Parte I (eSocial &amp; Configurações Gerais)</div>
+      </div>
+    </div>
+    <div class="full-card">
+      <div class="full-card-inner">
+        <div class="full-card-video">
+          <video controls preload="none" style="width:100%;height:100%;display:block;">
+            <source src="parametros_DP_PARTE_I.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo HTML5.
+          </video>
+        </div>
+        <div class="full-card-content">
+          <div class="full-card-steps-title">Etapas desta seção</div>
+          <div class="alert">
+            <span class="alert-icon">⚠️</span>
+            <span>Os parâmetros são o <strong>coração da empresa</strong>. Quanto mais completo o preenchimento, mais precisa será toda a operação.</span>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">1</div>
+            <div class="step-text"><strong>Gerar eSocial:</strong> Informe o <strong>Ambiente Oficial</strong> como tipo de ambiente de transmissão.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">2</div>
+            <div class="step-text"><strong>Histórico de envio:</strong> Informe se a empresa já foi enviada anteriormente e insira a <strong>data de início</strong> dos envios pelo sistema atual (normalmente o período corrente).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">3</div>
+            <div class="step-text"><strong>Aba Faseamento:</strong> Indique o <strong>grupo correspondente</strong> da empresa conforme enquadramento no eSocial.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">4</div>
+            <div class="step-text"><strong>Aba Geral:</strong> Preencha a <strong>classificação tributária</strong> e informe: se é cooperativa, se possui consultora, se optou pelo registro eletrônico de empregados e demais campos disponíveis.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MÓDULO 3 -->
+  <div class="module" id="mod3">
+    <div class="module-header">
+      <div class="module-num">03</div>
+      <div class="module-title-wrap">
+        <div class="module-label">Departamento Pessoal</div>
+        <div class="module-title">Parâmetros DP — Parte II (Cálculo, Regime &amp; INSS)</div>
+      </div>
+    </div>
+    <div class="module-grid">
+      <div class="video-card">
+        <div class="video-wrap">
+          <video controls preload="none">
+            <source src="parametros_DP_PARTE_II.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo HTML5.
+          </video>
+          <div class="video-tag">▶ Módulo 03</div>
+        </div>
+        <div class="video-info">
+          <h3>Parâmetros DP Parte II</h3>
+          <p>Configurações de cálculo, unidade de cálculo, regime tributário e INSS.</p>
+        </div>
+      </div>
+      <div class="steps-card">
+        <div class="steps-card-title">Passo a Passo</div>
+        <div class="step-item">
+          <div class="step-dot">1</div>
+          <div class="step-text"><strong>Aba Cálculo:</strong> Use <strong>rubrica da empresa</strong> com o mesmo código da empresa. Isso garante que alterações em rubricas afetem apenas a base desta empresa (a base é compartilhada). Marque <strong>"Efetuar cálculo de tributos conforme a DCTFWEB"</strong> — obrigatório desde 2021.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">2</div>
+          <div class="step-text"><strong>Aba Unidade de Cálculo:</strong> Defina um nome descritivo para identificação da unidade de cálculo da empresa.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">3</div>
+          <div class="step-text"><strong>Aba Regime:</strong> Informe o nome descritivo, o regime tributário (Simples, Lucro Presumido etc.) e o <strong>anexo correspondente</strong> da empresa.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">4</div>
+          <div class="step-text"><strong>Aba INSS:</strong> Preencha todos os campos de acordo com as informações específicas da empresa — alíquotas, código FPAS, terceiros e demais configurações previdenciárias.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MÓDULO 4 -->
+  <div class="module" id="mod4">
+    <div class="module-header">
+      <div class="module-num">04</div>
+      <div class="module-title-wrap">
+        <div class="module-label">eSocial</div>
+        <div class="module-title">Envio dos Eventos Iniciais — 1ª e 2ª Fase</div>
+      </div>
+    </div>
+    <div class="full-card">
+      <div class="full-card-inner">
+        <div class="full-card-video">
+          <video controls preload="none" style="width:100%;height:100%;display:block;">
+            <source src="envio_do_eSocial_1__e_2__fase.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo HTML5.
+          </video>
+        </div>
+        <div class="full-card-content">
+          <div class="full-card-steps-title">Etapas desta seção</div>
+          <div class="step-item">
+            <div class="step-dot">1</div>
+            <div class="step-text"><strong>1ª Fase — Eventos de Tabela:</strong> Envie os eventos iniciais de empregador, rubricas e estabelecimentos. São os registros que estruturam a empresa no eSocial.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">2</div>
+            <div class="step-text"><strong>2ª Fase — Eventos de Vínculo:</strong> Envie os vínculos empregatícios — admissões, cargos e demais eventos de trabalhador — conforme a fase de implantação.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">3</div>
+            <div class="step-text"><strong>Painel de Pendências:</strong> Após o envio, acompanhe o retorno dos lotes no painel. Verifique erros e alertas para cada evento e corrija eventuais inconsistências antes do reenvio.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">4</div>
+            <div class="step-text"><strong>Validação final:</strong> Confirme o <strong>recibo de transmissão</strong> de cada evento. Somente após aprovação pelo ambiente oficial o envio está concluído com sucesso.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MÓDULO 5 -->
+  <div class="module" id="mod5">
+    <div class="module-header">
+      <div class="module-num">05</div>
+      <div class="module-title-wrap">
+        <div class="module-label">Fiscal &amp; Contábil</div>
+        <div class="module-title">Clonagem de Empresa Modelo — Domínio (Franqueado)</div>
+      </div>
+    </div>
+    <div class="image-module">
+      <div class="steps-card-title">Como funciona a Clonagem</div>
+      <p style="color:var(--muted);font-size:0.87rem;margin-bottom:1rem;">No módulo Fiscal e Contábil do Domínio, é possível <strong style="color:var(--text);">clonar os parâmetros</strong> de uma empresa modelo da base ou de outra empresa da própria carteira de clientes (Franqueado). Isso torna a implantação mais assertiva e reduz significativamente o retrabalho.</p>
+      <div style="margin-bottom:1.2rem;">
+        <span class="chip">📋 Controle → Empresas</span>
+        <span class="chip">📥 Botão Importação</span>
+        <span class="chip">🔁 Importar dados</span>
+        <span class="chip">✅ Folha / Escrita Fiscal / Contabilidade</span>
+      </div>
+      <div class="steps-card" style="margin-bottom:1.5rem;">
+        <div class="steps-card-title">Passo a Passo</div>
+        <div class="step-item">
+          <div class="step-dot">1</div>
+          <div class="step-text"><strong>Acesse:</strong> Menu <strong>Controle → Empresas</strong>. Abra o cadastro da empresa de destino que receberá as configurações clonadas.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">2</div>
+          <div class="step-text"><strong>Clique em "Importação"</strong> na barra inferior do cadastro da empresa para abrir o assistente de importação.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">3</div>
+          <div class="step-text"><strong>Selecione a origem:</strong> Escolha a empresa modelo da base ou uma empresa da sua carteira de clientes (Franqueado) como fonte dos parâmetros a importar.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">4</div>
+          <div class="step-text"><strong>Clique em "Importar dados"</strong> para cada módulo desejado: <strong>Folha, Escrita Fiscal, Contabilidade, Patrimônio, Latur</strong> etc. Confirme e grave ao finalizar.</div>
+        </div>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Clique nas imagens para ampliar:</p>
+      <div class="image-grid">
+        <img src="1779408674117_image.png" alt="Clonagem Fiscal Contábil – Tela 1" onclick="openLightbox(this.src)">
+        <img src="1779408703496_image.png" alt="Clonagem Fiscal Contábil – Tela 2" onclick="openLightbox(this.src)">
+        <img src="1779408705954_image.png" alt="Clonagem Fiscal Contábil – Tela 3" onclick="openLightbox(this.src)">
+        <img src="1779408714544_image.png" alt="Clonagem Fiscal Contábil – Tela 4" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Capacitação Inicial — Domínio</strong> — Material exclusivo para franqueados.<br>
+  Mantenha este conteúdo atualizado conforme as versões do sistema.
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="Imagem ampliada">
+</div>
+
+<script>
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Nav active state on scroll
+  const sections = document.querySelectorAll('.module');
+  const navLinks = document.querySelectorAll('.nav-item');
+
+  function onScroll() {
+    let current = '';
+    sections.forEach(function(section) {
+      const top = section.getBoundingClientRect().top;
+      if (top <= 160) current = section.id;
+    });
+    navLinks.forEach(function(link) {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+</script>
+</body>
+</html>
