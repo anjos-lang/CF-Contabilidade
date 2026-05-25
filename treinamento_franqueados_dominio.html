@@ -271,6 +271,7 @@
     aspect-ratio: 16/9;
   }
   .video-wrap video { width: 100%; height: 100%; display: block; }
+  .video-wrap iframe { width: 100%; height: 100%; display: block; border: none; }
   .video-tag {
     position: absolute;
     top: 10px; left: 10px;
@@ -356,6 +357,7 @@
   @media (max-width: 760px) { .full-card-inner { grid-template-columns: 1fr; } }
   .full-card-video { background: #000; aspect-ratio: 16/9; }
   .full-card-video video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .full-card-video iframe { width: 100%; height: 100%; display: block; border: none; }
   .full-card-content {
     padding: 1.8rem;
     border-left: 1px solid var(--border);
@@ -544,7 +546,7 @@
 <main>
 
   <div class="note-box">
-    <strong>📁 Sobre os vídeos:</strong> Os arquivos de vídeo devem estar na mesma pasta que este HTML com os nomes originais, ou ajuste os caminhos na tag <code>&lt;source src="..."&gt;</code> conforme seu servidor.
+    <strong>📁 Sobre os vídeos:</strong> Os vídeos são incorporados diretamente do YouTube. Certifique-se de que sua conexão permite acesso ao YouTube.
   </div>
 
   <!-- MÓDULO 1 -->
@@ -611,10 +613,15 @@
     <div class="full-card">
       <div class="full-card-inner">
         <div class="full-card-video">
-          <video controls preload="none" style="width:100%;height:100%;display:block;">
-            <source src="parametros_DP_PARTE_I.mp4" type="video/mp4">
-            Seu navegador não suporta vídeo HTML5.
-          </video>
+          <iframe width="100%" height="100%"
+            src="https://www.youtube.com/embed/345OGlpw9j8"
+            title="parametros DP PARTE I"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            style="display:block;border:none;width:100%;height:100%;">
+          </iframe>
         </div>
         <div class="full-card-content">
           <div class="full-card-steps-title">Etapas desta seção</div>
